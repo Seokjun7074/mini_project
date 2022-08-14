@@ -1,18 +1,18 @@
-// import React from "react";
-// // 1. react-router-dom을 사용하기 위해서 아래 API들을 import 합니다.
-// import { BrowserRouter, Route, Routes } from "react-router-dom";
-// import Detail from "../pages/detail_page/detail";
+import React from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Detail from "../pages/detail_page/detail"
+import Home from "../pages/main_page/dummyhome"
 
-// // 2. Router 라는 함수를 만들고 아래와 같이 작성합니다.
-// const Router = () => {
-//   return (
-//     <BrowserRouter>
-//       <Routes>
-//       <Route path="detail" element={<Detail />} />
-//       {/* /api/posts/{postId} */}
-//       </Routes>
-//     </BrowserRouter>
-//   );
-// };
+const Router = () => {
+  return (
+    <BrowserRouter>
+      <Routes>
+        {/* 라우터경로재확인해서수정하기 */}
+      <Route path="/" element={<Home />} />
+      <Route path="detail" element={<Detail/>} />
+      </Routes>
+    </BrowserRouter>
+  );
+};
 
-// export default Router;
+export default Router;

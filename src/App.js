@@ -1,12 +1,12 @@
 import React from "react";
-// import Router from "./shared/Router";
-import Detail from "./pages/detail_page/detail";
+import Router from "./shared/Router";
+
 
 function App() {
-  return  <Detail></Detail>
+  return  <Router/>;
 }
 
 export default App;
 
-{/* <Router />; */}
+
 
