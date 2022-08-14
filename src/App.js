@@ -1,7 +1,12 @@
-import "./App.css";
+import React from "react";
+// import Router from "./shared/Router";
+import Detail from "./pages/detail_page/detail";
 
 function App() {
-  return <div className="App"></div>;
+  return  <Detail></Detail>
 }
 
 export default App;
+
+{/* <Router />; */}
+
