@@ -7,10 +7,10 @@ const Header = () => {
   return (
     <HeaderWrapper>
       EAT-편한세상
-      {/* <ButtonWrapper>
+      <ButtonWrapper>
         <HeaderButton>수정</HeaderButton>
         <HeaderButton>삭제</HeaderButton>
-      </ButtonWrapper> */}
+      </ButtonWrapper>
     </HeaderWrapper>
   );
 };

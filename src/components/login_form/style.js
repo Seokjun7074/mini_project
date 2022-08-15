@@ -22,11 +22,6 @@ export const LoginInput = styled.input`
   border-radius: 10px;
   background-color: lightgray;
   margin-bottom: 20px;
-  &:focus {
-    /* outline: 1px solid #3ccd7b; */
-    /* outline: none;
-    box-shadow: 0px 0px 2px #3ccd7b; */
-  }
 `;
 
 export const SubmitButton = styled.button`
