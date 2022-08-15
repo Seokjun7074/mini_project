@@ -6,18 +6,6 @@ import { styled } from '@mui/material/styles';
 import "./detail.css"
 
 
-// const dummyData = [{
-//         postId: 1,
-//         username: “작성자”,
-//         title: "제목입니다",
-//         product:”바나나우유”,
-//        store : ”GS동작점”,
-//        contents : “포스트”,
-//        imageUrl:"/images/cancle.png",
-//        CreatedAt : “2011-11-11 11:11”
-//        LikeNum : “랜덤값”
-//     }]; 
-
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
   ...theme.typography.body2,
@@ -28,27 +16,39 @@ const Item = styled(Paper)(({ theme }) => ({
 
 
 export default function Detail() {
+  
+  const DummyData = {
+    postId: 1,
+    username: "서정희",
+    title: "초코우유는못참지",
+    product:"초코우유",
+    store : "gs",
+    contents : "뭐라쓸지모르겠는데",
+    imageUrl:"이미지url가져와야지",
+    CreatedAt: "88-88-8",
+    LikeNum : "50"
+  };
+  
   return (
     <div>
+      
       <p/>
-
-    
       <Stack
         direction={{ xs: 'column', sm: 'row' }}
         spacing={{ xs: 1, sm: 2, md: 4 }}
       >
-        <Item className='image'>이미지</Item>
-        <Item className='itemname'>제품명</Item>
+        <Item className='image'>{DummyData.imageUrl}</Item>
+        <Item className='itemname'>{DummyData.product}</Item>
       </Stack>
       <p/>
       <Stack
         direction={{ xs: 'column', sm: 'row' }}
         spacing={{ xs: 1, sm: 2, md: 4 }}
       >
-        <Item className='title'>제목</Item>
-        <Item className='postinginfo'>작성자</Item>
-        <Item className='postinginfo'>작성시간</Item>
-        <Item className='postinginfo'>좋아요</Item>
+        <Item className='titledesign'>{DummyData.title}</Item>
+        <Item className='postinginfo'>{DummyData.username}</Item>
+        <Item className='postinginfo'>{DummyData.CreatedAt}</Item>
+        <Item className='postinginfo'>{DummyData.LikeNum}</Item>
         
       </Stack>
       <p/>
@@ -56,14 +56,11 @@ export default function Detail() {
         direction={{ xs: 'column', sm: 'row' }}
         spacing={{ xs: 1, sm: 2, md: 4 }}
       >
-        <Item className='contents'>콘텐츠</Item>
+        <Item className='contents'>{DummyData.contents}</Item>
       </Stack>
     </div>
   );
 }
-  
-
-
 
 
 // https://mui.com/material-ui/react-stack/
