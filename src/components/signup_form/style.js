@@ -28,7 +28,6 @@ export const ValidText = styled.label`
   }};
   color: ${(props) => {
     // if (props.valid === undefined) return "null";
-    console.log(props.valid);
     return props.valid ? "tomato" : "tomato";
   }};
 `;
