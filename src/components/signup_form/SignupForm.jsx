@@ -1,29 +1,32 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import useInput from "../../hooks/useInput";
-import {
-  LoginInput,
-  LoginInputWrapper,
-  SubmitButton,
-} from "../login_form/style";
+import { LoginInputWrapper, SubmitButton } from "../login_form/style";
 import { LabelBox, SignupFormWrapper, SignupInput, ValidText } from "./style";
 
 const SignupForm = ({ onLogin }) => {
   const [username, usernameHandler, setUsername] = useInput();
   const [password, passwordHandler, setPassword] = useInput();
   const [passwordCheck, passwordCheckHandler, setPasswordCheck] = useInput();
+  const refId = useRef(0);
+  const refPassword = useRef(0);
   const submitForm = {
     username: username,
     password: password,
     passwordCheck: passwordCheck,
   };
   const onSubmit = () => {
-    if (username === "" || password === "" || passwordCheck === "") {
+    if (password === "" || passwordCheck === "" || idCheck === false) {
       alert("양식에 맞게 작성해주세요");
+      refId.current.focus();
       return;
+    } else if (password !== passwordCheck) {
+      alert("비밀번호가 다릅니다.");
+      refPassword.current.focus();
+    } else {
+      console.log(submitForm); // axios post
+      alert("회원가입 완료");
+      onLogin(true);
     }
-    console.log(submitForm); // axios post
-    alert("회원가입 완료");
-    onLogin(true);
   };
 
   const idValidation = /^[A-Za-z0-9]{5,10}$/;
@@ -45,6 +48,7 @@ const SignupForm = ({ onLogin }) => {
           onChange={usernameHandler}
           placeholder=" 영문 5글자~10글자"
           valid={idCheck}
+          ref={refId}
         />
         <label>password </label>
         <SignupInput
@@ -52,6 +56,7 @@ const SignupForm = ({ onLogin }) => {
           value={password}
           onChange={passwordHandler}
           placeholder=" password를 입력하세요"
+          ref={refPassword}
         />
         <label>password Check </label>
         <SignupInput
