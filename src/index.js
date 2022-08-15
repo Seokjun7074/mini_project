@@ -5,13 +5,10 @@ import App from "./App";
 import LoginPage from "./pages/login_page/LoginPage";
 import Header from "./components/header/Header";
 
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    {/* <App /> */}
-    <Header></Header>
-    <LoginPage />
+    <App />
   </React.StrictMode>
 );
 
