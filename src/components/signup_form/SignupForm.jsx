@@ -37,7 +37,7 @@ const SignupForm = ({ onLogin }) => {
       <LoginInputWrapper>
         <LabelBox>
           <label>ID</label>
-          <ValidText valid={idCheck}>5글자~10글자로 입력하세요</ValidText>
+          <ValidText valid={idCheck}>영문 5글자~10글자로 입력하세요</ValidText>
         </LabelBox>
         <SignupInput
           type="text"
