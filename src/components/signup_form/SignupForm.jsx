@@ -1,10 +1,11 @@
+import { useEffect } from "react";
 import useInput from "../../hooks/useInput";
 import {
   LoginInput,
   LoginInputWrapper,
   SubmitButton,
 } from "../login_form/style";
-import { SignupFormWrapper } from "./style";
+import { LabelBox, SignupFormWrapper, SignupInput, ValidText } from "./style";
 
 const SignupForm = ({ onLogin }) => {
   const [username, usernameHandler, setUsername] = useInput();
@@ -24,27 +25,36 @@ const SignupForm = ({ onLogin }) => {
     alert("회원가입 완료");
     onLogin(true);
   };
-  // const userIdRegex = /^[A-Za-z0-9+]{5,}$/;
-  // console.log(userIdRegex.test(username));
+
+  const idValidation = /^[A-Za-z0-9]{5,10}$/;
+  const idCheck = idValidation.test(username);
+  useEffect(() => {
+    // console.log(idCheck);
+  }, [username]);
+
   return (
     <SignupFormWrapper>
       <LoginInputWrapper>
-        <label>ID</label>
-        <LoginInput
+        <LabelBox>
+          <label>ID</label>
+          <ValidText valid={idCheck}>5글자~10글자로 입력하세요</ValidText>
+        </LabelBox>
+        <SignupInput
           type="text"
           value={username}
           onChange={usernameHandler}
           placeholder=" 영문 5글자~10글자"
+          valid={idCheck}
         />
         <label>password </label>
-        <LoginInput
+        <SignupInput
           type="password"
           value={password}
           onChange={passwordHandler}
           placeholder=" password를 입력하세요"
         />
         <label>password Check </label>
-        <LoginInput
+        <SignupInput
           type="password"
           value={passwordCheck}
           onChange={passwordCheckHandler}
