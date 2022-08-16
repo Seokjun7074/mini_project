@@ -1,8 +1,6 @@
-import "./Modal.css";
+import "./modal.css";
 
 const Modal = (props) => {
-  console.log(props);
-
   return (
     <>
       {props.show ? (

@@ -5,8 +5,11 @@ import {
   LoginInputWrapper,
   SubmitButton,
 } from "./style";
-
+import { useDispatch } from "react-redux";
+import { __login } from "../../redux/async/userThunk";
+import { getCookies } from "../../shared/cookies";
 const LoginForm = () => {
+  const dispatch = useDispatch();
   const [username, usernameHandler] = useInput();
   const [password, passwordHandler] = useInput();
 
@@ -19,7 +22,9 @@ const LoginForm = () => {
       alert("양식에 맞게 작성해주세요");
       return;
     }
-    console.log(submitForm); // axios post
+    dispatch(__login(submitForm));
+
+    // console.log(submitForm); // axios post
   };
   return (
     <LoginFormWrapper>
