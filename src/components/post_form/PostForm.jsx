@@ -2,10 +2,13 @@ import React, { useState } from "react";
 import Modal from "../modal/Modal";
 import "./style.css";
 import axios from "axios";
-
+import { useSelector } from "react-redux";
+import { getCookies } from "../../shared/cookies";
 // 포스트카드 등록폼
 
 const PostForm = () => {
+  const username = useSelector((state) => state.user.username);
+  const token = getCookies("myToken");
   const [show, setShow] = useState(false);
   const closeModal = () => setShow(false);
   const openModal = () => setShow(true);
@@ -15,7 +18,7 @@ const PostForm = () => {
     reader.readAsDataURL(fileBlob);
     return new Promise((resolve) => {
       reader.onload = () => {
-        console.log(reader.result);
+        // console.log(reader.result);
         SetForm({ ...form, image: reader.result });
         setImageSrc(reader.result);
         resolve();
@@ -50,9 +53,20 @@ const PostForm = () => {
     console.log(form);
 
     const callSomethingAxios = () => {
-      axios.post("http://localhost:3001/posts", form).then((response) => {
-        console.log(response.data);
-      });
+      axios
+        .post(
+          "https://jsonplaceholder.typicode.com/posts",
+          form,
+          {
+            headers: {
+              Authorization: `${token}`,
+            },
+          },
+          { withcredentials: true }
+        )
+        .then((response) => {
+          console.log("응답", response.data);
+        });
     };
 
     callSomethingAxios();
@@ -60,7 +74,7 @@ const PostForm = () => {
     setImageSrc("");
     form.current++;
     closeModal();
-    window.location.reload();
+    // window.location.reload();
   };
 
   return (
@@ -83,15 +97,6 @@ const PostForm = () => {
             <input
               name="contents"
               value={form.contents}
-              onChange={handleChangeState}
-              type="text"
-            />
-          </div>
-          <div>
-            <label>작성자</label>
-            <input
-              name="username"
-              value={form.username}
               onChange={handleChangeState}
               type="text"
             />
