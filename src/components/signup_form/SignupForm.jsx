@@ -27,7 +27,6 @@ const SignupForm = ({ onLogin }) => {
       refPassword.current.focus();
     } else {
       dispatch(__signup(submitForm));
-      alert("회원가입 완료");
       onLogin(true);
     }
   };
