@@ -2,8 +2,11 @@ import { useEffect, useRef } from "react";
 import useInput from "../../hooks/useInput";
 import { LoginInputWrapper, SubmitButton } from "../login_form/style";
 import { LabelBox, SignupFormWrapper, SignupInput, ValidText } from "./style";
+import { __signup } from "../../redux/async/userThunk";
+import { useDispatch } from "react-redux";
 
 const SignupForm = ({ onLogin }) => {
+  const dispatch = useDispatch();
   const [username, usernameHandler, setUsername] = useInput();
   const [password, passwordHandler, setPassword] = useInput();
   const [passwordCheck, passwordCheckHandler, setPasswordCheck] = useInput();
@@ -23,7 +26,7 @@ const SignupForm = ({ onLogin }) => {
       alert("비밀번호가 다릅니다.");
       refPassword.current.focus();
     } else {
-      console.log(submitForm); // axios post
+      dispatch(__signup(submitForm));
       alert("회원가입 완료");
       onLogin(true);
     }
