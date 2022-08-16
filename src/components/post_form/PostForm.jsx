@@ -6,12 +6,11 @@ import { useSelector } from "react-redux";
 import { getCookies } from "../../shared/cookies";
 // 포스트카드 등록폼
 
-const PostForm = () => {
+const PostForm = (props) => {
   const username = useSelector((state) => state.user.username);
   const token = getCookies("myToken");
-  const [show, setShow] = useState(false);
-  const closeModal = () => setShow(false);
-  const openModal = () => setShow(true);
+  
+
   const [imageSrc, setImageSrc] = useState("");
   const encodeFileToBase64 = (fileBlob) => {
     const reader = new FileReader();
@@ -55,7 +54,7 @@ const PostForm = () => {
     const callSomethingAxios = () => {
       axios
         .post(
-          "https://jsonplaceholder.typicode.com/posts",
+          "http://localhost:3001/posts",
           form,
           {
             headers: {
@@ -73,15 +72,13 @@ const PostForm = () => {
     SetForm(initialState);
     setImageSrc("");
     form.current++;
-    closeModal();
-    // window.location.reload();
+    props.closeModal()
+        // window.location.reload();
   };
 
   return (
     <>
-      <button onClick={openModal}>추가하기</button>
       {/* 헤더부분 */}
-      <Modal show={show}>
         <form onSubmit={onSubmitHandler}>
           <div>
             <label>제목</label>
@@ -132,10 +129,9 @@ const PostForm = () => {
           </div>
           <div>
             <button>추가하기</button>
-            <button onClick={closeModal}>닫기</button>
+            <button onClick={props.closeModal}>닫기</button>
           </div>
         </form>
-      </Modal>
     </>
   );
 };

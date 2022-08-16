@@ -1,0 +1,28 @@
+import styled from "styled-components";
+
+export const HeaderWrapper = styled.header`
+  width: 100%;
+  height: 80px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid black;
+  font-size: 20px;
+`;
+export const ButtonWrapper = styled.div`
+  display: flex;
+  gap: 20px;
+`;
+export const HeaderButton = styled.button`
+  cursor: pointer;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.1);
+  padding: 5px;
+  width: 75px;
+  height: 35px;
+  background-color: whitesmoke;
+  font-size: 15px;
+  font-weight: 600;
+`;
