@@ -6,8 +6,10 @@ const PostCard = (props) => {//props.post에는 게시글 하나가 담김
   const post = props.value
   console.log(post)
 
+
+  // '/post/'+post.id
   return (
-    <Link to={'/post/'+post.id}>
+    <Link to={"/api/posts/:postId"}>
     <div className="post-box">
      <p>{post.title}</p>
       <p>{post.product}</p>

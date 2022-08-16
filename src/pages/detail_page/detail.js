@@ -2,8 +2,8 @@ import * as React from "react";
 import Paper from "@mui/material/Paper";
 import Stack from "@mui/material/Stack";
 import { styled } from "@mui/material/styles";
-
 import "./detail.css";
+import Header from "../../components/header/Header";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -27,16 +27,19 @@ export default function Detail() {
   };
 
   return (
-    <div>
-      <p />
+    <div className="wrap">
+      <Header></Header>
+      <div className="layout">
+        <br />
       <Stack
+        // style ={{border: "1px solid red"}}
         direction={{ xs: "column", sm: "row" }}
         spacing={{ xs: 1, sm: 2, md: 4 }}
       >
         <Item className="image">{DummyData.imageUrl}</Item>
         <Item className="itemname">{DummyData.product}</Item>
       </Stack>
-      <p />
+      <br />
       <Stack
         direction={{ xs: "column", sm: "row" }}
         spacing={{ xs: 1, sm: 2, md: 4 }}
@@ -46,14 +49,17 @@ export default function Detail() {
         <Item className="postinginfo">{DummyData.CreatedAt}</Item>
         <Item className="postinginfo">{DummyData.LikeNum}</Item>
       </Stack>
-      <p />
+      <br />
       <Stack
         direction={{ xs: "column", sm: "row" }}
         spacing={{ xs: 1, sm: 2, md: 4 }}
       >
         <Item className="contents">{DummyData.contents}</Item>
       </Stack>
+      </div>
     </div>
+      
+    
   );
 }
 
