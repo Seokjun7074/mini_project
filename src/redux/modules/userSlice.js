@@ -22,7 +22,7 @@ export const counterSlice = createSlice({
     },
     [__login.rejected]: (state, action) => {
       console.log("로그인 실패");
-      alert("입력정보를 다시 확인하세요");
+      // alert("입력정보를 다시 확인하세요");
     },
   },
 });
