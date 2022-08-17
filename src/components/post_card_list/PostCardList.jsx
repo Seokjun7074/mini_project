@@ -19,8 +19,8 @@ const PostCardList = () => {
   const callSomethingAxios = () => {
     axios({
       method: "get", // 통신할 방식
-      // url: "http://localhost:3001/posts", /// 더미서버
-      url: `${API_URL}/api/posts`, // 실서버
+      url: "http://localhost:3001/posts", // 더미서버
+      // url: `${API_URL}/api/posts`, // 실서버
     }).then((response) => {
       // console.log(response.data);
       setDataList(response.data);

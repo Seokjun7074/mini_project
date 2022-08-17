@@ -8,11 +8,9 @@ import {
 import { useDispatch } from "react-redux";
 import { __login } from "../../redux/async/userThunk";
 import { getCookies } from "../../shared/cookies";
-import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const [username, usernameHandler] = useInput();
   const [password, passwordHandler] = useInput();
 

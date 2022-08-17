@@ -10,9 +10,15 @@ export const HeaderWrapper = styled.header`
   border-bottom: 1px solid black;
   font-size: 20px;
 `;
-export const ButtonWrapper = styled.div`
+export const LoginWrapper = styled.div`
   display: flex;
   gap: 20px;
+  display: ${(props) => (props.token ? null : "none")};
+`;
+export const LogoutWrapper = styled.div`
+  display: flex;
+  gap: 20px;
+  display: ${(props) => (props.token ? "none" : null)};
 `;
 export const HeaderButton = styled.button`
   cursor: pointer;
