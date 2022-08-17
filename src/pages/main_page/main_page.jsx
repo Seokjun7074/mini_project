@@ -6,8 +6,8 @@ import Header from "../../components/header/Header";
 const MainPage = () => {
   return (
     <div>
-      {/* <MainHeader/> */}
-      <Header />
+      <MainHeader />
+      {/* <Header /> */}
       <PostCardList />
     </div>
   );
