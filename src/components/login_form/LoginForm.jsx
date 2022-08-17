@@ -8,8 +8,11 @@ import {
 import { useDispatch } from "react-redux";
 import { __login } from "../../redux/async/userThunk";
 import { getCookies } from "../../shared/cookies";
+import { useNavigate } from "react-router-dom";
+
 const LoginForm = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [username, usernameHandler] = useInput();
   const [password, passwordHandler] = useInput();
 
@@ -21,10 +24,9 @@ const LoginForm = () => {
     if (username === "" || password === "") {
       alert("양식에 맞게 작성해주세요");
       return;
+    } else {
+      dispatch(__login(submitForm));
     }
-    dispatch(__login(submitForm));
-
-    // console.log(submitForm); // axios post
   };
   return (
     <LoginFormWrapper>

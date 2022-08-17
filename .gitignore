@@ -48,3 +48,6 @@ yarn.lock
 
 # API_URL
 .env
+
+# DB
+db.json
