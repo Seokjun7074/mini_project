@@ -9,14 +9,13 @@ const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
-        {/* 라우터경로재확인해서수정하기 */}
         <Route path="/" element={<MainPage />} />
         <Route path="my-page" element={<MyPage />} />
         <Route path="detail" element={<Detail />} />
+        <Route path="detail/:id" element={<Detail />} />
         <Route path="login" element={<LoginPage />} />
       </Routes>
     </BrowserRouter>
   );
 };
-
 export default Router;
