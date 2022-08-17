@@ -20,7 +20,6 @@ export const LogoutWrapper = styled.div`
   gap: 20px;
   display: ${(props) => (props.token ? "none" : null)};
 `;
-
 export const HeaderButton = styled.button`
   cursor: pointer;
   border: none;
@@ -30,11 +29,6 @@ export const HeaderButton = styled.button`
   width: 75px;
   height: 35px;
   background-color: whitesmoke;
-  font-size: 20px;
+  font-size: 15px;
   font-weight: 600;
-  /* display: ${(props) => (props.token ? null : "none")}; */
 `;
-
-// export const LoginButton = styled(HeaderButton)`
-//   display: ${(props) => (props.token ? "none" : null)};
-// `;

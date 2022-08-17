@@ -1,0 +1,42 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    },
+    {
+      "title": "d",
+      "product": "d",
+      "store": "d",
+      "contents": "dddd",
+      "image": "",
+      "id": 2
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "mypage":[
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    },
+    {
+      "title": "d",
+      "product": "d",
+      "store": "d",
+      "contents": "dddd",
+      "image": "",
+      "id": 2
+    }
+  ]
+}

@@ -1,4 +1,3 @@
-
 .modal {
   display: none;
   position: fixed;
@@ -8,7 +7,6 @@
   left: 0;
   z-index: 99;
   background-color: rgba(0, 0, 0, 0.6);
-  
 }
 .modal button {
   outline: none;
@@ -16,23 +14,23 @@
   border: 0;
 }
 .modal > section {
-  width: 90%;
-  width: 350px;
-  height: 400px;
+  padding: 20px;
+  width: 700px;
+  /* height: 400px; */
   margin: 0 auto;
   border-radius: 12px;
-  background-color: rgb(237, 226, 226);
+  /* background-color: rgb(237, 226, 226); */
+  background-color: white;
   /* 팝업이 열릴때 스르륵 열리는 효과 */
   animation: modal-show 0.3s;
   overflow: hidden;
   display: flex;
   align-items: center;
+  justify-content: center;
   font-size: 16px;
   font-weight: 400;
-  
-  
 }
-.modal > section > header {
+/* .modal > section > header {
   position: relative;
   padding: 16px 64px 16px 16px;
   background-color: #f1f1f1;
@@ -64,7 +62,7 @@
   background-color: #86727e;
   border-radius: 5px;
   font-size: 13px;
-}
+} */
 .modal.openModal {
   display: flex;
   align-items: center;
