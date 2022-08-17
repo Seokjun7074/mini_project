@@ -4,11 +4,17 @@ import "./index.css";
 import App from "./App";
 import LoginPage from "./pages/login_page/LoginPage";
 import Header from "./components/header/Header";
-
+import { CookiesProvider } from "react-cookie";
+import { Provider } from "react-redux";
+import store from "./redux/store";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    <CookiesProvider>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </CookiesProvider>
   </React.StrictMode>
 );
 
