@@ -7,6 +7,7 @@ import {
   PostCardImg,
   PostPaginationWrapper,
 } from "./style";
+// import { Link } from "react-router-dom";
 
 const PostCardList = () => {
   const [dataList, setDataList] = useState([]);
@@ -19,8 +20,11 @@ const PostCardList = () => {
   const callSomethingAxios = () => {
     axios({
       method: "get", // 통신할 방식
-      // url: "http://localhost:3001/posts", /// 더미서버
-      url: `${API_URL}/api/posts`, // 실서버
+      url: "http://localhost:3001/posts",
+      // url: "http://localhost:3001/posts", 
+      // 더미서버
+      // url: `${API_URL}/api/posts`,
+      // 실서버
     }).then((response) => {
       // console.log(response.data);
       setDataList(response.data);
@@ -31,7 +35,7 @@ const PostCardList = () => {
     <PostPaginationWrapper>
       <PaginationContainer>
         {dataList.map((data, index) => (
-          <PostCard key={index}>
+          <PostCard key={index} id={data.id}>
             <PostCardImg
               src={data.imgUrl ? data.imgUrl : "img/default_img.jpeg"}
               onerror="img/default_img.jpeg"
