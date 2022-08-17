@@ -30,7 +30,10 @@ const PostCardList = () => {
     <div>
         
         {dataList.map((data, index)=> (
-          <PostCard key={index} value={data} />
+          <div>
+            <PostCard key={index} value={data} />
+          </div>
+          
 
         ))}
       {/* <PostCard value={data[0]} />
