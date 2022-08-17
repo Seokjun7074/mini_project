@@ -10,10 +10,17 @@ export const HeaderWrapper = styled.header`
   border-bottom: 1px solid black;
   font-size: 20px;
 `;
-export const ButtonWrapper = styled.div`
+export const LoginWrapper = styled.div`
   display: flex;
   gap: 20px;
+  display: ${(props) => (props.token ? null : "none")};
 `;
+export const LogoutWrapper = styled.div`
+  display: flex;
+  gap: 20px;
+  display: ${(props) => (props.token ? "none" : null)};
+`;
+
 export const HeaderButton = styled.button`
   cursor: pointer;
   border: none;
@@ -25,4 +32,9 @@ export const HeaderButton = styled.button`
   background-color: whitesmoke;
   font-size: 20px;
   font-weight: 600;
+  /* display: ${(props) => (props.token ? null : "none")}; */
 `;
+
+// export const LoginButton = styled(HeaderButton)`
+//   display: ${(props) => (props.token ? "none" : null)};
+// `;

@@ -9,31 +9,18 @@ import { getCookies } from "../../shared/cookies";
 const PostForm = (props) => {
   const username = useSelector((state) => state.user.username);
   const token = getCookies("myToken");
-
-  const [imageSrc, setImageSrc] = useState("");
-  const encodeFileToBase64 = (fileBlob) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(fileBlob);
-    return new Promise((resolve) => {
-      reader.onload = () => {
-        // console.log(reader.result);
-        SetForm({ ...form, image: reader.result });
-        setImageSrc(reader.result);
-        resolve();
-      };
-    });
-  };
+  const API_URL = process.env.REACT_APP_API_URL;
 
   const initialState = {
     title: "",
     product: "",
     store: "",
     contents: "",
-    image: "/img/default_img.jpeg",
   };
 
   const [form, SetForm] = useState(initialState);
-  //const [dataList, SetDataList] = useState([]);
+  const [imageFile, SetImageFile] = useState();
+  const formData = new FormData();
 
   const handleChangeState = (event) => {
     SetForm({
@@ -42,37 +29,47 @@ const PostForm = (props) => {
     });
   };
 
+  //게시글 작성 api 호출
+  const callSomethingAxios = () => {
+    axios
+      .post(
+        `${API_URL}/api/posts`,
+        // "http://localhost:3001/posts",
+        formData,
+        {
+          headers: {
+            Authorization: `${token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then((response) => {
+        console.log("응답", response.data);
+      });
+  };
+
+  const setImageFile = (e) => {
+    SetImageFile(e.target.files[0]);
+    for (const keyValue of formData) console.log(keyValue);
+  };
+
   const onSubmitHandler = (event) => {
     event.preventDefault();
     if (form.title.trim() === "" || form.contents.trim() === "") return;
-    SetForm({ ...form, [event.target.value]: event.target.value });
-    //게시글 작성 api 호출
+    formData.append(
+      "requestDto",
+      new Blob([JSON.stringify(form)], {
+        type: "application/json",
+      })
+    );
 
-    // console.log(form);
-
-    const callSomethingAxios = () => {
-      axios
-        .post(
-          "http://localhost:3001/posts",
-          form,
-          {
-            headers: {
-              Authorization: `${token}`,
-            },
-          },
-          { withcredentials: true }
-        )
-        .then((response) => {
-          console.log("응답", response.data);
-        });
-    };
-
+    if (imageFile !== undefined) {
+      formData.append("imageFile", imageFile);
+    }
     callSomethingAxios();
     SetForm(initialState);
-    setImageSrc("");
-    form.current++;
     props.closeModal();
-    window.location.reload();
+    // window.location.reload();
   };
 
   return (
@@ -117,14 +114,9 @@ const PostForm = (props) => {
         </div>
         <div>
           <p>이미지 미리보기</p>
-          <input
-            type="file"
-            onChange={(e) => {
-              encodeFileToBase64(e.target.files[0]);
-            }}
-          />
+          <input type="file" onChange={setImageFile} />
           <label htmlFor="preview"></label>
-          {imageSrc && <img src={imageSrc} alt="preview-img" />}
+          {/* {imageSrc && <img src={imageSrc} alt="preview-img" />} */}
         </div>
         <div>
           <button>추가하기</button>
