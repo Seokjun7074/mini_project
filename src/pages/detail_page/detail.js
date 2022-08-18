@@ -14,6 +14,9 @@ import {
 } from "../../components/header/style";
 import Modal from "../../components/modal/Modal";
 import EditForm from "../../components/edit_form/EditForm";
+import { __getDetail } from "../../redux/async/detailThunk";
+import { useDispatch, useSelector } from "react-redux";
+import { ImgWrapper } from "./style";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -28,32 +31,14 @@ export default function Detail() {
   const closeModal = () => setShow(false);
   const openModal = () => setShow(true);
 
+  const dispatch = useDispatch();
   const param = useParams();
-  console.log(param);
-
-  const [data, setData] = useState({});
-  console.log(data);
+  const data = useSelector((state) => state.detail.detail);
+  // console.log(data);
 
   useEffect(() => {
-    callSomethingAxios();
+    dispatch(__getDetail(param.id));
   }, []);
-
-  const callSomethingAxios = () => {
-    axios({
-      method: "get", // 통신할 방식
-      url: "http://localhost:3001/posts/", // 통신할 웹문서
-      // url: `http://localhost:3001/posts/${param}`, // 실서버용
-    }).then((response) => {
-      console.log(response.data);
-      // setData(response.data)
-      const newData = response.data.find(
-        (data) => `${data.id}` === `${param.id}`
-      );
-      if (newData) {
-        setData(newData);
-      }
-    });
-  };
 
   return (
     <div className="wrap">
@@ -72,7 +57,12 @@ export default function Detail() {
           direction={{ xs: "column", sm: "row" }}
           spacing={{ xs: 1, sm: 2, md: 4 }}
         >
-          <Item className="image">{data.imageUrl ?? ""}</Item>
+          <Item className="image">
+            <ImgWrapper
+              src={data.imgUrl ? data.imgUrl : "img/default_img.jpeg"}
+              onerror="img/default_img.jpeg"
+            />
+          </Item>
           <Item className="itemname">{data.product ?? ""}</Item>
         </Stack>
         <br />

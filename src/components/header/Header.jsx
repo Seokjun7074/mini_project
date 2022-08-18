@@ -7,7 +7,7 @@ import {
   HeaderWrapper,
   LoginWrapper,
   LogoutWrapper,
-  ButtonWrapper //츄가함
+  ButtonWrapper, //츄가함
 } from "./style";
 import EditForm from "../edit_form/EditForm";
 
@@ -20,9 +20,9 @@ const Header = () => {
     const myToken = getCookies("myToken");
     setToken(myToken);
   }, []);
-  console.log(token);
-  
-  const [show, setShow] = useState(false)
+  // console.log("token:", token);
+
+  const [show, setShow] = useState(false);
   const closeModal = () => setShow(false);
   const openModal = () => setShow(true);
 
@@ -31,16 +31,13 @@ const Header = () => {
       EAT-편한세상
       {/* <LoginWrapper token={token}> */}
       <ButtonWrapper>
-        <HeaderButton  onClick={openModal}>수정</HeaderButton>
+        <HeaderButton onClick={openModal}>수정</HeaderButton>
         <HeaderButton>삭제</HeaderButton>
       </ButtonWrapper>
-        
       {/* </LoginWrapper> */}
-      
       <Modal show={show}>
-      <EditForm closeModal={closeModal}/>
+        <EditForm closeModal={closeModal} />
       </Modal>
-
       {/* <LogoutWrapper token={token}>
         <HeaderButton
           onClick={() => {
@@ -50,7 +47,6 @@ const Header = () => {
           로그인
         </HeaderButton>
       </LogoutWrapper> */}
-
     </HeaderWrapper>
   );
 };

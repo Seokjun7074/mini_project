@@ -59,7 +59,7 @@ const PostForm = (props) => {
 
   const setImageFile = (e) => {
     SetImageFile(e.target.files[0]);
-    for (const keyValue of formData) console.log(keyValue);
+    // for (const keyValue of formData) console.log(keyValue);
   };
 
   const onSubmitHandler = (event) => {
