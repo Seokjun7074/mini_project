@@ -7,7 +7,6 @@ import {
 } from "./style";
 import { useDispatch } from "react-redux";
 import { __login } from "../../redux/async/userThunk";
-import { getCookies } from "../../shared/cookies";
 
 const LoginForm = () => {
   const dispatch = useDispatch();

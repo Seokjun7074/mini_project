@@ -29,7 +29,7 @@ export const __postDetail = createAsyncThunk(
     const API_URL = process.env.REACT_APP_API_URL;
     try {
       const token = getCookies("myToken");
-      // console.log(payload);
+      console.log(payload);
       const data = await axios.put(
         `${API_URL}/api/posts/${payload.id}`,
         payload.formData,
@@ -54,7 +54,6 @@ export const __deleteDetail = createAsyncThunk(
     const API_URL = process.env.REACT_APP_API_URL;
     try {
       const token = getCookies("myToken");
-      // console.log(payload);
       const data = await axios.delete(`${API_URL}/api/posts/${payload}`, {
         headers: {
           Authorization: `${token}`,

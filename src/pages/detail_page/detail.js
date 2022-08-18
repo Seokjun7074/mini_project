@@ -4,16 +4,10 @@ import Stack from "@mui/material/Stack";
 import { styled } from "@mui/material/styles";
 import "./detail.css";
 import Header from "../../components/header/Header";
-import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
-import {
-  HeaderButton,
-  ButtonWrapper, //츄가함
-} from "../../components/header/style";
-import Modal from "../../components/modal/Modal";
-import EditForm from "../../components/edit_form/EditForm";
+
 import { __getDetail } from "../../redux/async/detailThunk";
 import { useDispatch, useSelector } from "react-redux";
 import { ImgWrapper } from "./style";
@@ -28,9 +22,6 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 export default function Detail() {
-  const [show, setShow] = useState(false);
-  const closeModal = () => setShow(false);
-  const openModal = () => setShow(true);
   const [token, setToken] = useState();
 
   const dispatch = useDispatch();
