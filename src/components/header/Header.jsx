@@ -29,8 +29,9 @@ const Header = () => {
   const openModal = () => setShow(true);
   const data = useSelector((state) => state.detail.detail);
   const dispatch = useDispatch();
-  const deleteDetail = () => {
-    dispatch(__deleteDetail(data.post_id));
+  const deleteDetail = async () => {
+    await dispatch(__deleteDetail(data.post_id));
+    navigete("/");
   };
 
   return (

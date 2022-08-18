@@ -38,28 +38,8 @@ const PostForm = (props) => {
     });
   };
 
-  //게시글 작성 api 호출
-  // const callSomethingAxios = () => {
-  //   axios
-  //     .post(
-  //       `${API_URL}/api/posts`,
-  //       // "http://localhost:3001/posts",
-  //       formData,
-  //       {
-  //         headers: {
-  //           Authorization: `${token}`,
-  //           "Content-Type": "application/json",
-  //         },
-  //       }
-  //     )
-  //     .then((response) => {
-  //       console.log("응답", response.data);
-  //     });
-  // };
-
   const setImageFile = (e) => {
     SetImageFile(e.target.files[0]);
-    // for (const keyValue of formData) console.log(keyValue);
   };
 
   const onSubmitHandler = (event) => {
