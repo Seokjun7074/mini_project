@@ -1,4 +1,4 @@
-import React from "react";
+import { useEffect } from "react";
 import PostCard from "../post_card/PostCard";
 import {
   PaginationContainer,
@@ -12,7 +12,7 @@ const PostCardList = () => {
   const dispatch = useDispatch();
   const postDataList = useSelector((state) => state.post.postList);
 
-  React.useEffect(() => {
+  useEffect(() => {
     getPostData();
   }, [dispatch]);
 
