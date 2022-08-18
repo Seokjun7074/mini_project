@@ -1,18 +1,17 @@
 import React, { useState } from "react";
 import Modal from "../modal/Modal";
 import "./style.css";
-import axios from "axios";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getCookies } from "../../shared/cookies";
+import { __postDetail } from "../../redux/async/detailThunk";
 // 포스트카드 등록폼
 
 const EditForm = (props) => {
-  const { data } = props
-  console.log(props)
+  const { data } = props;
   const username = useSelector((state) => state.user.username);
   const token = getCookies("myToken");
   const API_URL = process.env.REACT_APP_API_URL;
-
+  const dispatch = useDispatch();
   const initialState = {
     title: data.title,
     product: data.product,
@@ -31,27 +30,8 @@ const EditForm = (props) => {
     });
   };
 
-  const callSomethingAxios = () => {
-    axios
-      .put(
-        // `${API_URL}/api/posts`,
-        "http://localhost:3001/posts",
-        formData,
-        {
-          headers: {
-            Authorization: `${token}`,
-            "Content-Type": "application/json",
-          },
-        }
-      )
-      .then((response) => {
-        console.log("응답", response.data);
-      });
-  };
-
   const setImageFile = (e) => {
     SetImageFile(e.target.files[0]);
-    for (const keyValue of formData) console.log(keyValue);
   };
 
   const onSubmitHandler = (event) => {
@@ -67,17 +47,22 @@ const EditForm = (props) => {
     if (imageFile !== undefined) {
       formData.append("imageFile", imageFile);
     }
-    callSomethingAxios();
+    // console.log(data.post_id);
+    const submitData = {
+      id: data.post_id,
+      formData,
+    };
+    dispatch(__postDetail(submitData));
     SetForm(initialState);
     props.closeModal();
-    window.location.reload();
+    // window.location.reload();
   };
 
   return (
     <>
       {/* 헤더부분 */}
       <form onSubmit={onSubmitHandler}>
-      <div>
+        <div>
           <label>제목</label>
           <input
             name="title"
@@ -117,8 +102,6 @@ const EditForm = (props) => {
       </form>
     </>
   );
-}
-  
-
+};
 
 export default EditForm;
