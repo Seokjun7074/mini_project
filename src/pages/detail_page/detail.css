@@ -1,33 +1,33 @@
-.wrap{
+.wrap {
   width: 100%;
   margin: 0 auto;
 }
 
-.layout{
+.layout {
   height: 1000px;
   width: 1300px;
   margin: 0 auto;
 }
 
-.image{
+.image {
   height: 300px;
   width: 600px;
 }
 
-.itemname{
+.itemname {
   height: 300px;
   width: 600px;
 }
 
-.titledesign{
-  width: 600px
+.titledesign {
+  width: 600px;
 }
 
-.postinginfo{
-  width: 168px
+.postinginfo {
+  width: 168px;
 }
 
-.contents{
+.contents {
   width: 1250px;
   height: 300px;
 }

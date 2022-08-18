@@ -16,6 +16,7 @@ export const counterSlice = createSlice({
     },
     [__login.fulfilled]: (state, action) => {
       console.log("로그인 성공");
+      // console.log(action.payload);
       state.username = action.payload.username;
       // state.password = action.payload.password;
       // 받아온 토큰을 쿠키에 저장하기

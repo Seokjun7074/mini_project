@@ -47,7 +47,11 @@ export default function Detail() {
         >
           <Item className="image">
             <ImgWrapper
-              src={data.imgUrl ? data.imgUrl : "img/default_img.jpeg"}
+              src={
+                data.imgUrl
+                  ? data.imgUrl
+                  : `${process.env.PUBLIC_URL}/img/default_img.jpeg`
+              }
               onerror="img/default_img.jpeg"
             />
           </Item>
@@ -58,10 +62,10 @@ export default function Detail() {
           direction={{ xs: "column", sm: "row" }}
           spacing={{ xs: 1, sm: 2, md: 4 }}
         >
-          <Item className="titledesign">{data.title ?? ""}</Item>
-          <Item className="postinginfo">{data.username ?? ""}</Item>
-          <Item className="postinginfo">{data.CreatedAt ?? ""}</Item>
-          <Item className="postinginfo">{data.LikeNum ?? ""}</Item>
+          <Item className="titledesign">{data.title}</Item>
+          <Item className="postinginfo">{data.username}</Item>
+          <Item className="postinginfo">{data.CreatedAt}</Item>
+          <Item className="postinginfo">{data.LikeNum}</Item>
         </Stack>
         <br />
         <Stack

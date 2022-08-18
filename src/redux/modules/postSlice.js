@@ -16,7 +16,7 @@ export const postSlice = createSlice({
       // console.log("데이터 불러오기 성공");
       // state = action.payload; //실서버
       state.postList = action.payload; //더미서버
-      console.log(current(state));
+      // console.log(current(state));
     },
     [__getPost.rejected]: (state, action) => {
       console.log("데이터 불러오기 실패");
