@@ -7,23 +7,24 @@ import {
 } from "./style";
 import { useDispatch } from "react-redux";
 import { __login } from "../../redux/async/userThunk";
-import { getCookies } from "../../shared/cookies";
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
   const [username, usernameHandler] = useInput();
   const [password, passwordHandler] = useInput();
-
+  const navigate = useNavigate();
   const submitForm = {
     username: username,
     password: password,
   };
-  const onSubmit = () => {
+  const onSubmit = async () => {
     if (username === "" || password === "") {
       alert("양식에 맞게 작성해주세요");
       return;
     } else {
-      dispatch(__login(submitForm));
+      await dispatch(__login(submitForm));
+      navigate("/");
     }
   };
   return (

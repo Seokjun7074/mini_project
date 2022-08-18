@@ -16,7 +16,7 @@ export const postSlice = createSlice({
       // console.log("데이터 불러오기 성공");
       // state = action.payload; //실서버
       state.postList = action.payload; //더미서버
-      console.log(current(state));
+      // console.log(current(state));
     },
     [__getPost.rejected]: (state, action) => {
       console.log("데이터 불러오기 실패");
@@ -28,9 +28,7 @@ export const postSlice = createSlice({
     },
     [__postPost.fulfilled]: (state, action) => {
       // console.log("데이터 불러오기 성공");
-      // state = action.payload; //실서버
-      state.postList.push(action.payload); //더미서버
-      // window.location.reload();
+      state.postList.unshift(action.payload); //더미서버
     },
     [__postPost.rejected]: (state, action) => {
       console.log("데이터 불러오기 실패");

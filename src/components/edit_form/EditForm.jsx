@@ -1,6 +1,14 @@
 import React, { useState } from "react";
 import Modal from "../modal/Modal";
 import "./style.css";
+import {
+  PostImagePreview,
+  InputWrapper,
+  TextInput,
+  PostFormWrapper,
+  PostImageBox,
+  PostButton,
+} from "./style";
 import { useDispatch, useSelector } from "react-redux";
 import { getCookies } from "../../shared/cookies";
 import { __postDetail } from "../../redux/async/detailThunk";
@@ -60,8 +68,66 @@ const EditForm = (props) => {
 
   return (
     <>
-      {/* 헤더부분 */}
       <form onSubmit={onSubmitHandler}>
+        <PostFormWrapper>
+          <PostImageBox>
+            {imageFile && (
+              <PostImagePreview
+                src={URL.createObjectURL(imageFile)}
+                alt="preview-img"
+              />
+            )}
+          </PostImageBox>
+          <div>
+            <InputWrapper>
+              <label>제목</label>
+              <TextInput
+                name="title"
+                value={form.title}
+                onChange={handleChangeState}
+                type="text"
+              />
+            </InputWrapper>
+            <InputWrapper>
+              <label>내용</label>
+              <TextInput
+                name="contents"
+                value={form.contents}
+                onChange={handleChangeState}
+                type="text"
+              />
+            </InputWrapper>
+            <InputWrapper>
+              <label>편의점명</label>
+              <TextInput
+                name="store"
+                value={form.store}
+                onChange={handleChangeState}
+                type="text"
+              />
+            </InputWrapper>
+            <InputWrapper>
+              <label>상품명</label>
+              <TextInput
+                name="product"
+                value={form.product}
+                onChange={handleChangeState}
+                type="text"
+              />
+            </InputWrapper>
+            <InputWrapper>
+              <p>이미지 미리보기</p>
+              <input type="file" onChange={setImageFile} />
+              <label htmlFor="preview"></label>
+            </InputWrapper>
+            <InputWrapper>
+              <PostButton>추가하기</PostButton>
+              <PostButton onClick={props.closeModal}>닫기</PostButton>
+            </InputWrapper>
+          </div>
+        </PostFormWrapper>
+      </form>
+      {/* <form onSubmit={onSubmitHandler}>
         <div>
           <label>제목</label>
           <input
@@ -93,13 +159,12 @@ const EditForm = (props) => {
           <p>이미지 미리보기</p>
           <input type="file" onChange={setImageFile} />
           <label htmlFor="preview"></label>
-          {/* {imageSrc && <img src={imageSrc} alt="preview-img" />} */}
         </div>
         <div>
           <button>수정하기</button>
           <button onClick={props.closeModal}>닫기</button>
         </div>
-      </form>
+      </form> */}
     </>
   );
 };
