@@ -7,7 +7,7 @@ import {
   LogoutWrapper,
 } from "./style";
 import PostForm from "../post_form/PostForm";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { getCookies, removeCookies } from "../../shared/cookies";
 
 const MainHeader = () => {
@@ -22,6 +22,7 @@ const MainHeader = () => {
   }, []);
   const closeModal = () => setShow(false);
   const openModal = () => setShow(true);
+  const navigate = useNavigate();
 
   const logout = () => {
     removeCookies("myToken");

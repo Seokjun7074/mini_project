@@ -11,6 +11,7 @@ import {
 } from "../../components/post_card_list/style";
 import { Pagination } from "@mui/material";
 import { useSelector } from "react-redux";
+import Mypage_Header from "../../components/mypage_header/MypageHeader";
 
 // 마이페이지
 
@@ -40,6 +41,7 @@ const MyPage = () => {
 
   return (
     <div>
+      <Mypage_Header></Mypage_Header>
       <PostPaginationWrapper>
         <PaginationContainer>
           {dataList.map((data, index) => (
