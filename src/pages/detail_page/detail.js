@@ -4,19 +4,14 @@ import Stack from "@mui/material/Stack";
 import { styled } from "@mui/material/styles";
 import "./detail.css";
 import Header from "../../components/header/Header";
-import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
-import {
-  HeaderButton,
-  ButtonWrapper, //츄가함
-} from "../../components/header/style";
-import Modal from "../../components/modal/Modal";
-import EditForm from "../../components/edit_form/EditForm";
+
 import { __getDetail } from "../../redux/async/detailThunk";
 import { useDispatch, useSelector } from "react-redux";
 import { ImgWrapper } from "./style";
+import { getCookies } from "../../shared/cookies";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -27,9 +22,7 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 export default function Detail() {
-  const [show, setShow] = useState(false);
-  const closeModal = () => setShow(false);
-  const openModal = () => setShow(true);
+  const [token, setToken] = useState();
 
   const dispatch = useDispatch();
   const param = useParams();
@@ -38,18 +31,13 @@ export default function Detail() {
 
   useEffect(() => {
     dispatch(__getDetail(param.id));
+    const myToken = getCookies("myToken");
+    setToken(myToken);
   }, []);
 
   return (
     <div className="wrap">
-      <Header></Header>
-      <ButtonWrapper>
-        <HeaderButton onClick={openModal}>수정</HeaderButton>
-        <HeaderButton>삭제</HeaderButton>
-      </ButtonWrapper>
-      <Modal show={show}>
-        <EditForm data={data} closeModal={closeModal} />
-      </Modal>
+      <Header token={token} />
       <div className="layout">
         <br />
         <Stack
