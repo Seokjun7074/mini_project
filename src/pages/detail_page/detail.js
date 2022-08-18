@@ -8,6 +8,12 @@ import axios from "axios"
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
+import {
+  HeaderButton,
+  ButtonWrapper //츄가함
+} from "../../components/header/style";
+import Modal from "../../components/modal/Modal";
+import EditForm from "../../components/edit_form/EditForm";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -19,10 +25,15 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export default function Detail() {
 
+  const [show, setShow] = useState(false)
+  const closeModal = () => setShow(false);
+  const openModal = () => setShow(true);
+
   const param = useParams();
   console.log(param);
 
   const [data, setData] = useState({});
+  console.log(data)
 
   useEffect(()=> {
     callSomethingAxios(); 
@@ -46,6 +57,13 @@ export default function Detail() {
   return (
     <div className="wrap">
       <Header></Header>
+        <ButtonWrapper>
+          <HeaderButton  onClick={openModal}>수정</HeaderButton>
+          <HeaderButton>삭제</HeaderButton>
+        </ButtonWrapper>
+        <Modal show={show}>
+        <EditForm data={data} closeModal={closeModal}/>
+        </Modal>
       <div className="layout">
         <br />
       <Stack 
