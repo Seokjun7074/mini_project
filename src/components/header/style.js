@@ -35,6 +35,12 @@ export const HeaderButton = styled.button`
   /* display: ${(props) => (props.token ? null : "none")}; */
 `;
 
+export const ButtonWrapper = styled.div`
+  display: flex;
+  gap: 20px;
+`; //추가함 
+
+
 // export const LoginButton = styled(HeaderButton)`
 //   display: ${(props) => (props.token ? "none" : null)};
 // `;

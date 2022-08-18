@@ -7,6 +7,7 @@ import {
   PostCardImg,
   PostPaginationWrapper,
 } from "./style";
+// import { Link } from "react-router-dom";
 
 const PostCardList = () => {
   const [dataList, setDataList] = useState([]);
@@ -31,7 +32,7 @@ const PostCardList = () => {
     <PostPaginationWrapper>
       <PaginationContainer>
         {dataList.map((data, index) => (
-          <PostCard key={index}>
+          <PostCard key={index} id={data.id}>
             <PostCardImg
               src={data.imgUrl ? data.imgUrl : "img/default_img.jpeg"}
               onerror="img/default_img.jpeg"
