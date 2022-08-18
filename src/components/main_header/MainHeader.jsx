@@ -32,7 +32,7 @@ const MainHeader = () => {
           <HeaderButton>마이페이지</HeaderButton>
         </Link>
       </LoginWrapper>
-      <LogoutWrapper>
+      <LogoutWrapper token={token}>
         <Link to={"login"}>
           <HeaderButton>로그인</HeaderButton>
         </Link>

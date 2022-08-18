@@ -12,11 +12,13 @@ import {
   PostButton,
 } from "./style";
 // 포스트카드 등록폼
+import { useDispatch } from "react-redux";
+import { __postPost } from "../../redux/async/postThunk";
 
 const PostForm = (props) => {
   const username = useSelector((state) => state.user.username);
-  const token = getCookies("myToken");
   const API_URL = process.env.REACT_APP_API_URL;
+  const dispatch = useDispatch();
 
   const initialState = {
     title: "",
@@ -37,23 +39,23 @@ const PostForm = (props) => {
   };
 
   //게시글 작성 api 호출
-  const callSomethingAxios = () => {
-    axios
-      .post(
-        `${API_URL}/api/posts`,
-        // "http://localhost:3001/posts",
-        formData,
-        {
-          headers: {
-            Authorization: `${token}`,
-            "Content-Type": "application/json",
-          },
-        }
-      )
-      .then((response) => {
-        console.log("응답", response.data);
-      });
-  };
+  // const callSomethingAxios = () => {
+  //   axios
+  //     .post(
+  //       `${API_URL}/api/posts`,
+  //       // "http://localhost:3001/posts",
+  //       formData,
+  //       {
+  //         headers: {
+  //           Authorization: `${token}`,
+  //           "Content-Type": "application/json",
+  //         },
+  //       }
+  //     )
+  //     .then((response) => {
+  //       console.log("응답", response.data);
+  //     });
+  // };
 
   const setImageFile = (e) => {
     SetImageFile(e.target.files[0]);
@@ -73,7 +75,8 @@ const PostForm = (props) => {
     if (imageFile !== undefined) {
       formData.append("imageFile", imageFile);
     }
-    callSomethingAxios();
+    // callSomethingAxios();
+    dispatch(__postPost(formData));
     SetForm(initialState);
     props.closeModal();
     // window.location.reload();
