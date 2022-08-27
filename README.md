@@ -1,70 +1,62 @@
-# Getting Started with Create React App
+# EAT-편한세상 (편의점 음식 추천 게시판)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<img width="1440" alt="스크린샷 2022-08-18 오후 9 20 26" src="https://user-images.githubusercontent.com/79635274/187026655-acbcf02d-4206-464c-84ea-3d65fc3e4594.png">
 
-## Available Scripts
 
-In the project directory, you can run:
+## 주요 기능
 
-### `npm start`
+1. 사진/텍스트로 이루어진 데이터를 서버에 전송
+2. 서버로부터 받은 토큰을 쿠키에 저장
+3. 인증이 필요한경우 쿠키로부터 토큰을 받아와 서버로 전송
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 배운점 + 잘못한점
 
-### `npm test`
+1. ### 사진 + 텍스트 데이터를 서버에 전송할 때에는 foramData를 이용해 전송
+```javascript
+ const setImageFile = (e) => {
+    SetImageFile(e.target.files[0]);
+  };
+  
+  
+ const onSubmitHandler = (event) => {
+    if (form.title.trim() === "" || form.contents.trim() === "") return;
+    formData.append(
+      "requestDto",
+      new Blob([JSON.stringify(form)], {
+        type: "application/json",
+      })
+    );
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+    if (imageFile !== undefined) {
+      formData.append("imageFile", imageFile);
+    }
+    dispatch(__postPost(formData));
+    SetForm(initialState);
+    props.closeModal();
+  };
+```
+formData를 사용하면 각 폼의 필드와 값을 나타내는 key/value들의 집합을 쉽게 구성할 수 있다.
+빈 formData를 만들고 이미지 데이터와 json데이터를 넣어준다.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+해당 사항들에대해 구글링을 하던 도중 김영한님의 답변을 보게되었다.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+> 이런 문제는 보통 이미지와 JSON데이터를 함께 보내지 않습니다.
+API를 전송할 때는 보통 content/type을 application/json으로 전송하는데 이것은 multipart/formdata 방식이 아니기 때문입니다.
+이런 문제는 보통 다음과 같이 해결합니다.
+> 1. 분리 요청
+이미지만 AJAX등을 통해서 별도 요청으로 먼저 서버에 전송합니다.
+서버는 이미지를 저장하고, 저장된 이미지의 id(또는 파일명)를 클라이언트에 전송합니다.
+클라이언트는 이미지의 id와 전송할 데이터를 application/json으로 전송합니다.
+> 2. base64 인코딩
+이미지를 base64로 인코딩해서 application/json으로 전송할 데이터와 base64로 인코딩된 이미지를 함께 전송합니다.
+> 출처 https://www.inflearn.com/questions/307133
+    
+    
+ 위의 방법도 한번 고려해봐야겠다.
+ 
+ 2. ### 토큰 저장 방식에대해 고민이 필요
+ 
+ 현재는 서버로부터 받아온 토큰을 쿠키에 저장했다. 단순히 구글링을 통해 쿠키에 저장하는 방법을 본것이 화근이었다.
+ 보통 쿠키 또는 로컬스토리지에 토큰을 저장한다고 한다. 두 방법 모두 장단점을 가지고있는데 이부분에 대해서는 추후 자세히 공부한 후 정리할예정이다.
