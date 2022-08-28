@@ -32,7 +32,7 @@ export const __postPost = createAsyncThunk(
       const data = await axios.post(`${API_URL}/api/posts`, payload, {
         headers: {
           Authorization: `${token}`,
-          "Content-Type": "application/json",
+          "Content-Type": "multipart/form-data",
         },
       });
       console.log("받은데이터", data.data);
